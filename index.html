@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Virginia Land | Restaurant & Cafe</title>
+<meta name="description" content="Virginia Land Restaurant & Cafe. Hot drinks, iced coffee, frappe, milkshakes, waffles, pancakes, and desserts.">
+<meta name="theme-color" content="#1D0F0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --red:        #B3242E;
+    --red-dark:   #7A141A;
+    --gold:       #D9A93F;
+    --gold-dark:  #9E751D;
+    --gold-soft:  #F5E2B0;
+    --cream:      #FFF9EE;
+    --cream-card: #FDF3E3;
+    --white:      #FFFFFF;
+    --ink:        #2B1A1B;
+    --ink-soft:   #6E5A5B;
+    --night:      #1D0F0B;
+    --night-card: #281713;
+    
+    --font-en: "Poppins", system-ui, -apple-system, sans-serif;
+    --font-ar: "Cairo", system-ui, -apple-system, sans-serif;
+  }
+
+  *, *::before, *::after { 
+    box-sizing: border-box; 
+    -webkit-tap-highlight-color: transparent; 
+  }
+  
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body { 
+    margin: 0; 
+    font-family: var(--font-en); 
+    color: var(--ink); 
+    background: var(--night); 
+    line-height: 1.5; 
+    -webkit-font-smoothing: antialiased; 
+  }
+  
+  a, button, .chip, .close-btn, .menu-cta { 
+    cursor: pointer; 
+    touch-action: manipulation;
+  }
+  
+  svg { display: block; pointer-events: none; }
+
+  /* Topbar (English) */
+  .topbar {
+    background: var(--red); color: var(--white);
+    display: flex; justify-content: center; align-items: center;
+    padding: 10px 14px; font-weight: 700; font-size: 0.9rem; text-align: center;
+    border-bottom: 1px solid var(--gold);
+  }
+  .topbar a { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: inherit; }
+  .topbar svg { width: 16px; height: 16px; color: var(--gold-soft); flex-shrink: 0; }
+  .topbar .num { font-weight: 800; letter-spacing: 0.03em; }
+
+  /* Hero (English) */
+  .hero {
+    text-align: center; padding: 28px 16px 20px;
+    background: radial-gradient(circle at 50% 0%, rgba(217, 169, 63, 0.22), transparent 70%), var(--night);
+  }
+  .hero .logo { width: 90px; height: 90px; margin: 0 auto 12px; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.6)); }
+  .hero .logo svg { width: 100%; height: 100%; }
+  .hero h1 {
+    margin: 0; font-weight: 900; color: var(--cream);
+    font-size: 2.2rem; line-height: 1.1; letter-spacing: -0.5px;
+  }
+  .hero .sub {
+    margin: 8px auto 0; display: flex; align-items: center; justify-content: center; gap: 10px;
+    color: var(--gold); font-weight: 700; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .hero .sub::before, .hero .sub::after { content: ""; width: 20px; height: 2px; background: var(--gold); }
+
+  .wrap { width: 100%; padding: 0 16px 36px; margin: 0 auto; }
+
+  /* Menu CTA Button (English Text) */
+  .menu-cta {
+    width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    margin-top: 16px; padding: 16px 20px; border: 2px solid var(--gold-soft); border-radius: 20px;
+    background: linear-gradient(135deg, var(--gold) 0%, #C4922A 100%); 
+    color: var(--night); text-align: left;
+    box-shadow: 0 6px 0 var(--gold-dark), 0 12px 25px rgba(0,0,0,0.5);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+  }
+  .menu-cta * { pointer-events: none; }
+  .menu-cta:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--gold-dark), 0 4px 10px rgba(0,0,0,0.3); }
+  .menu-cta .word { font-weight: 900; font-size: 1.8rem; line-height: 1.1; color: var(--night); display: block; text-transform: uppercase; }
+  .menu-cta .hint { display: block; margin-top: 2px; font-size: 0.85rem; font-weight: 700; color: rgba(29, 15, 11, 0.85); }
+  .menu-cta .go { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--night); color: var(--gold); flex-shrink: 0; }
+  .menu-cta .go svg { width: 20px; height: 20px; }
+
+  /* Links (English) */
+  .links { margin-top: 24px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .link-card {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    padding: 14px 8px 12px; background: var(--cream); border: 2px solid var(--gold); border-radius: 16px;
+    font-weight: 800; font-size: 0.9rem; color: var(--night); text-align: center; text-decoration: none;
+  }
+  .link-card:active { transform: scale(0.97); }
+  .link-card .ic { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--red); color: var(--white); }
+  .link-card .ic svg { width: 20px; height: 20px; }
+  .link-card .ic.brand { background: none; }
+  .link-card .ic.brand svg { width: 44px; height: 44px; }
+  .link-card small { font-weight: 600; color: var(--ink-soft); font-size: 0.75rem; }
+
+  /* Call Section (English) */
+  .call {
+    margin-top: 24px; padding: 24px 16px; text-align: center;
+    background: var(--cream); border-radius: 20px; border: 2px solid var(--gold);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3); color: var(--ink);
+  }
+  .call h2 { margin: 0; font-size: 1.5rem; font-weight: 800; color: var(--night); }
+  .call p { margin: 4px 0 0; color: var(--ink-soft); font-size: 0.88rem; }
+  .call .big-num {
+    display: block; margin: 12px 0 16px; font-weight: 900;
+    font-size: 2rem; color: var(--red); text-decoration: none; direction: ltr;
+  }
+  .call-actions { display: flex; flex-direction: column; gap: 10px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+    padding: 12px; border-radius: 999px; font-weight: 800; font-size: 0.95rem;
+    border: none; text-decoration: none; transition: transform 0.1s ease;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-red { background: var(--red); color: var(--white); }
+  .btn-white { background: var(--white); color: var(--night); border: 2px solid #E2D1A8; }
+
+  footer { background: #130907; color: rgba(255,248,236,0.6); text-align: center; padding: 16px; font-size: 0.85rem; }
+  footer strong { color: var(--gold); }
+
+  /* ---------- MENU OVERLAY (ARABIC CONTENT & RTL) ---------- */
+  .overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 9999999 !important;
+    display: none; flex-direction: column;
+    background: var(--night); width: 100%;
+    height: 100vh; height: 100dvh;
+    -webkit-overflow-scrolling: touch;
+    font-family: var(--font-ar);
+  }
+  .overlay.active { display: flex !important; }
+
+  .menu-header {
+    flex: none; background: #150A08; color: var(--white); padding: 12px 16px 8px;
+    border-bottom: 2px solid var(--gold); z-index: 10;
+  }
+  .menu-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .menu-header h2 { margin: 0; font-weight: 900; font-size: 1.4rem; color: var(--gold-soft); }
+  .menu-header small { color: rgba(255,255,255,0.7); font-size: 0.78rem; display: block; }
+  
+  .close-btn {
+    width: 42px; height: 42px; border-radius: 50%; border: 0;
+    background: var(--gold); color: var(--night); display: grid; place-items: center; flex-shrink: 0;
+    -webkit-appearance: none;
+    outline: none;
+  }
+  .close-btn svg { width: 22px; height: 22px; }
+
+  .chips-container { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .chips-container::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: none; padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: 0.85rem;
+    border: 1px solid rgba(217, 169, 63, 0.4); background: rgba(255,255,255,0.05); color: var(--gold-soft);
+    white-space: nowrap; transition: all 0.15s ease;
+    -webkit-appearance: none;
+    outline: none;
+    font-family: var(--font-ar);
+  }
+  .chip[aria-current="true"] { background: var(--gold); border-color: var(--gold); color: var(--night); font-weight: 800; }
+
+  .menu-body {
+    flex: 1; overflow-y: auto; padding: 16px; background: var(--night);
+    scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
+  }
+
+  .cat-section { margin-bottom: 28px; scroll-margin-top: 10px; }
+  .cat-title {
+    font-weight: 900; font-size: 1.4rem; color: var(--gold);
+    margin: 0 0 4px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .cat-note { color: var(--gold-soft); font-size: 0.82rem; margin: 0 0 10px; opacity: 0.85; }
+
+  .cat-banner {
+    position: relative; width: 100%; border-radius: 14px; overflow: hidden;
+    margin-bottom: 12px; border: 1.5px solid var(--gold);
+    aspect-ratio: 16 / 9; background: #000;
+  }
+  .cat-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+
+  .items-grid { display: flex; flex-direction: column; gap: 8px; }
+  .item-card {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    background: var(--night-card); padding: 12px 14px; border-radius: 12px;
+    border: 1px solid rgba(217, 169, 63, 0.2);
+  }
+  .item-info { flex: 1; }
+  .item-name { font-weight: 700; font-size: 0.95rem; color: var(--cream); display: block; }
+  .item-desc { font-weight: 400; font-size: 0.8rem; color: rgba(255, 249, 238, 0.65); margin-top: 2px; display: block; }
+  .item-price {
+    font-weight: 900; font-size: 1.1rem; color: var(--gold);
+    white-space: nowrap; background: rgba(217, 169, 63, 0.1); padding: 4px 10px; border-radius: 8px;
+    border: 1px solid rgba(217, 169, 63, 0.3); display: flex; align-items: center; gap: 4px;
+  }
+  .item-price span { font-size: 0.72rem; font-weight: 700; color: var(--gold-soft); }
+
+  .table-container { width: 100%; overflow-x: auto; border-radius: 12px; border: 1px solid var(--gold); -webkit-overflow-scrolling: touch; }
+  table.custom-tbl { width: 100%; border-collapse: collapse; min-width: 300px; font-size: 0.85rem; }
+  .custom-tbl th { background: var(--gold); color: var(--night); padding: 8px 6px; font-weight: 800; text-align: center; }
+  .custom-tbl td { padding: 8px 6px; text-align: center; border-bottom: 1px solid rgba(217,169,63,0.2); color: var(--cream); background: var(--night-card); }
+  .custom-tbl td:first-child { text-align: right; font-weight: 700; color: var(--gold-soft); }
+  .custom-tbl td:not(:first-child) { font-weight: 800; color: var(--gold); }
+
+  @media (min-width: 600px) {
+    .wrap { max-width: 800px; }
+    .hero h1 { font-size: 3rem; }
+    .menu-cta .word { font-size: 2.2rem; }
+    .links { grid-template-columns: repeat(4, 1fr); }
+    .call-actions { flex-direction: row; }
+    .btn { width: auto; padding: 12px 28px; }
+    .overlay { max-width: 760px; height: 90vh; margin: auto; border-radius: 20px; border: 2px solid var(--gold); top: 0; bottom: 0; }
+    .items-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Topbar (English) -->
+<div class="topbar">
+  <a href="tel:+201202144755" aria-label="Call Virginia Land">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+    Call Us: <span class="num">01202144755</span>
+  </a>
+</div>
+
+<main>
+  <!-- Hero Section (English) -->
+  <header class="hero">
+    <div class="logo" id="logo"></div>
+    <h1>VIRGINIA LAND</h1>
+    <p class="sub">Restaurant & Cafe</p>
+  </header>
+
+  <div class="wrap">
+    <!-- Menu Button (English) -->
+    <button class="menu-cta" type="button" id="open-menu">
+      <span>
+        <span class="word">Menu</span>
+        <span class="hint">Drinks, Sweets & Snacks</span>
+      </span>
+      <span class="go">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </span>
+    </button>
+
+    <!-- Navigation / Social Links (English) -->
+    <nav class="links">
+      <a class="link-card" href="https://www.facebook.com/share/1DSd3F1Dy8/?mibextid=wwXIfr" target="_blank" rel="noopener">
+        <span class="ic brand"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11.5" fill="#fff"/><path fill="#0866FF" d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></span>
+        Facebook
+        <small>Official Page</small>
+      </a>
+      <a class="link-card" href="https://www.tiktok.com/@virginia.land_1?_r=1&amp;_t=ZS-99tYL6K9Cl7" target="_blank" rel="noopener">
+        <span class="ic brand"><svg viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#000"/><g transform="translate(5.2 5.2) scale(.6)"><path fill="#25F4EE" transform="translate(-.9 -.9)" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/><path fill="#FE2C55" transform="translate(.9 .9)" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/><path fill="#fff" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></g></svg></span>
+        TikTok
+        <small>@virginia.land_1</small>
+      </a>
+      <a class="link-card" href="https://maps.app.goo.gl/2PKTpBihdt4VUzrX9" target="_blank" rel="noopener">
+        <span class="ic brand"><svg viewBox="0 0 24 24"><path fill="#FBBC04" d="M19.527 4.799c1.212 2.608.937 5.678-.405 8.173-1.101 2.047-2.744 3.74-4.098 5.614-.619.858-1.244 1.75-1.669 2.727-.141.325-.263.658-.383.992-.121.333-.224.673-.34 1.008-.109.314-.236.684-.627.687h-.007c-.466-.001-.579-.53-.695-.887-.284-.874-.581-1.713-1.019-2.525-.51-.944-1.145-1.817-1.79-2.671L19.527 4.799z"/><path fill="#34A853" d="M8.545 7.705l-3.959 4.707c.724 1.54 1.821 2.863 2.871 4.18.247.31.494.622.737.936l4.984-5.925-.029.01c-1.741.601-3.691-.291-4.392-1.987a3.377 3.377 0 0 1-.209-.716c-.063-.437-.077-.761-.004-1.198l.001-.007z"/><path fill="#1A73E8" d="M5.492 3.149l-.003.004c-1.947 2.466-2.281 5.88-1.117 8.77l4.785-5.689-.058-.05-3.607-3.035z"/><path fill="#EA4335" d="M14.661.436l-3.838 4.563a.295.295 0 0 1 .027-.01c1.6-.551 3.403.15 4.22 1.626.176.319.323.683.377 1.045.068.446.085.773.012 1.22l-.003.016 3.836-4.561A8.382 8.382 0 0 0 14.67.439l-.009-.003z"/><path fill="#D93025" d="M9.466 5.868L14.162.285l-.047-.012A8.31 8.31 0 0 0 11.986 0a8.439 8.439 0 0 0-6.169 2.766l-.016.018 3.665 3.084z"/></svg></span>
+        Location
+        <small>Google Maps</small>
+      </a>
+      <a class="link-card" href="tel:+201202144755">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
+        Call
+        <small>01202144755</small>
+      </a>
+    </nav>
+
+    <!-- Orders & Reservations (English) -->
+    <section class="call">
+      <h2>Orders & Reservations</h2>
+      <p>Direct connection with our team</p>
+      <a class="big-num" href="tel:+201202144755">01202144755</a>
+      <div class="call-actions">
+        <a class="btn btn-red" href="tel:+201202144755">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          Call Now
+        </a>
+        <a class="btn btn-white" href="https://wa.me/201202144755" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <strong>Virginia Land</strong> &middot; Restaurant & Cafe
+</footer>
+
+<!-- Menu Overlay (Remains Arabic & RTL) -->
+<div class="overlay" id="overlay" dir="rtl">
+  <div class="menu-header">
+    <div class="menu-header-row">
+      <div>
+        <h2>منيو فيرجينيا لاند</h2>
+        <small>جميع الأسعار بالجنيه المصري (ج.م)</small>
+      </div>
+      <button class="close-btn" type="button" id="close-menu" aria-label="إغلاق المنيو">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="chips-container" id="chips"></div>
+  </div>
+
+  <div class="menu-body" id="scroller"></div>
+</div>
+
+<script>
+const PHOTOS = {
+  hot: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=800&q=80",
+  coffee: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80",
+  espresso: "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=800&q=80",
+  iced: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=800&q=80",
+  frappe: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=800&q=80",
+  fresh: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=800&q=80",
+  soft: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=800&q=80",
+  yogurt: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80",
+  snacks: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=800&q=80",
+  sahlab: "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=800&q=80",
+  smoothie: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=800&q=80",
+  soda: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80",
+  milkshake: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=800&q=80",
+  hotchoc: "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=800&q=80",
+  waffles: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=800&q=80",
+  bubble: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=800&q=80",
+  desserts: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80",
+  cinnabon: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80",
+  icecream: "https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&w=800&q=80",
+  pancake: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=800&q=80"
+};
+
+const MENU = [
+  { id: "hot", name: "ركن المشروبات الساخنة", items: [
+    ["شاي", 20], ["شاي أخضر", 25], ["شاي فليفر", 30], ["شاي حليب", 45],
+    ["أعشاب", 30], ["قرفة سادة", 30], ["قرفة حليب", 50],
+    ["هوت سيدار", 50], ["نسكافيه بلاك", 40], ["نسكافيه حليب", 50],
+    ["نسكافيه فليفر", 75, "بندق - فانيليا - كراميل"]
+  ]},
+  { id: "coffee", name: "ركن القهوة", items: [
+    ["قهوة تركي سادة", 30], ["قهوة تركي محوج", 35], ["قهوة تركي سادة دبل", 35],
+    ["قهوة تركي محوج دبل", 40], ["قهوة تركي محوج غامق دبل", 40],
+    ["قهوة سادة غامق دبل", 40], ["قهوة بندق", 55], ["قهوة فرنسي", 50],
+    ["قهوة هوت شوكليت", 60]
+  ]},
+  { id: "espresso", name: "إسبريسو", items: [
+    ["إسبريسو سنجل", 40], ["إسبريسو دوبل", 45], ["أمريكانو", 50],
+    ["ماكياتو", 45], ["كورتادو", 50], ["لاتيه", 60],
+    ["لاتيه فليفر", 75, "بندق - فانيليا - كراميل"],
+    ["كابتشينو", 65], ["كابتشينو فليفر", 75, "بندق - فانيليا - كراميل"],
+    ["موكا دارك", 70], ["موكا وايت", 70]
+  ]},
+  { id: "iced", name: "القهوة المثلجة", items: [
+    ["آيس لاتيه", 65], ["آيس لاتيه فليفر", 75, "بندق - فانيليا - كراميل"],
+    ["آيس أمريكانو", 65], ["آيس كراميل ماكياتو", 80], ["آيس سبانيش لاتيه", 75],
+    ["آيس سولتد كراميل لاتيه", 75], ["آيس موكا", 75], ["إضافة", 25]
+  ]},
+  { id: "frappe", name: "فرابيه", items: [
+    ["فرابيه فانيليا", 70], ["فرابيه بندق", 70], ["فرابيه كراميل", 70],
+    ["فرابيه شوكولاتة", 70], ["فرابيه هوت شوكليت", 70], ["فرابيه أوريو", 75],
+    ["فرابيه نوتيلا", 75], ["فرابيه لوتس", 75], ["فرابيه كيندر", 90],
+    ["فرابيه بستاشيو", 90], ["فرابيه سولتد كراميل", 75]
+  ]},
+  { id: "fresh", name: "المشروبات الطازجة", items: [
+    ["مانجو", 70], ["فراولة سادة", 60], ["فراولة حليب", 70],
+    ["موز حليب", 60], ["ليمون", 50], ["ليمون نعناع", 65],
+    ["عناب", 55], ["فيرجينيا فروتس", 80], ["كيوي", 90]
+  ]},
+  { id: "soft", name: "المشروبات الغازية", items: [
+    ["مياه صغير", 10], ["بيبسي", 35], ["كوكاكولا", 35], ["سبرايت", 35],
+    ["سفن أب", 35], ["ميريندا", 35], ["شويبس بأنواعها", 35],
+    ["فيروز", 40], ["ريد بول", 90], ["إضافة طعم أو شرايح ليمون", 5]
+  ]},
+  { id: "yogurt", name: "زبادي", items: [
+    ["زبادي عسل", 65], ["زبادي مكسرات", 75], ["زبادي مانجو", 65],
+    ["زبادي فراولة", 65], ["زبادي موز", 65], ["زبادي بلوبيري", 65],
+    ["زبادي بلوبول فروت", 80], ["زبادي مكس فواكه", 80]
+  ]},
+  { id: "snacks", name: "المقرمشات والسناكس", items: [
+    ["فشار ملح", 20], ["فشار جبنة", 25], ["فشار شطة ولائم", 25],
+    ["فشار كاتشب", 25], ["إندومي صغير", 20], ["إندومي كبير", 30]
+  ]},
+  { id: "sahlab", name: "سحلب", items: [
+    ["سحلب سادة", 60], ["سحلب مكسرات", 75], ["سحلب نوتيلا", 65],
+    ["سحلب لوتس", 65], ["سحلب كيندر", 75], ["سحلب بستاشيو", 75], ["سحلب أوريو", 65]
+  ]},
+  { id: "smoothie", name: "سموذي", items: [
+    ["سموذي مانجو", 65], ["سموذي فراولة", 65], ["سموذي كيوي", 65],
+    ["سموذي بلوبيري", 65], ["سموذي ليمون نعناع", 70], ["سموذي أناناس", 60],
+    ["سموذي تفاح أخضر", 60], ["سموذي خوخ", 60], ["سموذي بالباشون فروت", 70],
+    ["سموذي ريد بول", 70], ["سموذي فراولة + كيوي + ليمون نعناع", 70],
+    ["سموذي مكس من اختيارك", 75]
+  ]},
+  { id: "soda", name: "ركن الصودا", items: [
+    ["كلاسيك", 65],
+    ["صودا نكهات", 65, "فراولة - مانجو - خوخ - كيوي - أناناس - بلوبيري"],
+    ["صودا فيرجينيا", 75, "باشون - باشون مكس"],
+    ["ريدبول", 90],
+    ["شيري كولا", 75],
+    ["بلو باشون", 70],
+    ["سن رايز", 70],
+    ["سن شاين", 70],
+    ["إضافة بوبا", 30]
+  ]},
+  { id: "milkshake", name: "ميلك شيك", items: [
+    ["ميلك شيك أوريو", 80], ["ميلك شيك لوتس", 80], ["ميلك شيك نوتيلا", 80],
+    ["ميلك شيك فانيليا", 80], ["ميلك شيك كراميل", 80], ["ميلك شيك فراولة", 80],
+    ["ميلك شيك مانجو", 80], ["ميلك شيك بلوبيري", 80], ["ميلك شيك مكس بيري", 80],
+    ["ميلك شيك باشون فروت", 80], ["ميلك شيك هوت شوكليت", 80], ["ميلك شيك كيندر", 80],
+    ["ميلك شيك فادج", 80], ["ميلك شيك هوهو", 100], ["ميلك شيك بستاشيو", 80]
+  ]},
+  { id: "hotchoc", name: "هوت شوكليت", items: [
+    ["هوت شوكليت", 60], ["هوت أوريو", 65], ["هوت نوتيلا", 65],
+    ["هوت لوتس", 65], ["هوت كراميل", 65], ["هوت بندق", 65],
+    ["هوت بستاشيو", 70], ["إضافة مارشملو", 20]
+  ]},
+  { id: "waffles", name: "وافل", items: [
+    ["وافل نوتيلا", 80], ["وافل دارك أو وايت هوت شوكليت", 80], ["وافل أوريو", 85],
+    ["وافل لوتس", 80], ["وافل كراميل", 80], ["وافل كيندر", 80],
+    ["وافل بستاشيو", 80], ["وافل مكسرات", 100], ["وافل هوهو", 100],
+    ["وافل فواكه", 100, "فراولة - مانجو - بلوبيري"], ["وافل مكس", 100]
+  ]},
+  { id: "bubble", name: "بابل وافل", items: [
+    ["وافل نوتيلا", 100],
+    ["وافل دارك أو وايت هوت شوكليت", 100],
+    ["وافل لوتس", 100],
+    ["وافل كيندر", 100],
+    ["وافل كراميل", 100],
+    ["وافل بستاشيو", 100],
+    ["وافل مكسرات", 130],
+    ["وافل أوريو", 120],
+    ["وافل هوهو", 110],
+    ["وافل فواكه", 110, "فراولة - مانجو - بلوبيري"],
+    ["وافل مكس فواكه", 150]
+  ]},
+  { id: "desserts", name: "الحلويات", items: [
+    ["مولتن نوتيلا", 90], ["مولتن لوتس", 90], ["مولتن كيندر", 100],
+    ["مولتن وايت", 100], ["مولتن بستاشيو", 110], ["مولتن دارك", 90],
+    ["مولتن أيس", 100], ["مولتن دبل وايت أوريو", 100], ["هوت كيك", 80],
+    ["تشيز دارك هوت شوكليت", 80], ["تشيز وايت هوت شوكليت", 85], ["تشيز لوتس", 85],
+    ["تشيز كيندر", 85], ["تشيز بستاشيو", 95], ["تشيز أوريو", 90],
+    ["تشيز فلافور", 105, "لوتس - فراولة - مانجو - كراميل"]
+  ]},
+  { id: "cinnabon", name: "سينابوون", items: [
+    ["سينابو كلاسيك", 70], ["سينابو كيندر", 75], ["سينابو بستاشيو", 80],
+    ["سينابو نوتيلا", 75], ["سينابو لوتس", 75], ["سينابو وايت", 75],
+    ["سينابو كراميل", 75], ["سينابو مكسرات", 80]
+  ]},
+  { id: "icecream", name: "آيس كريم", items: [
+    ["آيس كريم بولة", 25], ["آيس كريم 2 بولة", 40], ["آيس كريم 3 بولة", 55],
+    ["آيس كريم عسل", 75], ["مكسرات 3 بولة", 85], ["مكسرات + 3 بولة", 85]
+  ]},
+  { id: "pancake", name: "بان كيك", table: {
+    cols: ["6 قطع", "12 قطعة", "18 قطعة", "24 قطعة"],
+    rows: [
+      ["نوتيلا", 30, 65, 85, 100],
+      ["لوتس", 30, 65, 85, 100],
+      ["هوت شوكليت دارك أو وايت", 30, 65, 85, 100],
+      ["كيندر", 30, 65, 85, 100],
+      ["بستاشيو", 40, 75, 90, 120],
+      ["مكس", 40, 75, 90, 120]
+    ]
+  }}
+];
+
+function renderLogo() {
+  const leaves = [];
+  const cx = 50, cy = 50, r = 37, n = 8;
+  for (let side = 0; side < 2; side++) {
+    for (let i = 0; i < n; i++) {
+      const t = i / (n - 1);
+      let a = 105 + t * 130;
+      if (side === 1) a = 180 - a;
+      const rad = a * Math.PI / 180;
+      const x = cx + r * Math.cos(rad), y = cy + r * Math.sin(rad);
+      const tilt = side === 0 ? -28 : 28;
+      leaves.push(`<ellipse cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" rx="3.1" ry="7.5" transform="rotate(${(a + tilt).toFixed(1)} ${x.toFixed(2)} ${y.toFixed(2)})"/>`);
+    }
+  }
+  return `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="#B3242E" stroke="#D9A93F" stroke-width="2"/><g fill="#D9A93F">${leaves.join("")}</g><path d="M33 33 L50 68 L67 33" fill="none" stroke="#F6E4B3" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+}
+document.getElementById("logo").innerHTML = renderLogo();
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+const scroller = document.getElementById("scroller");
+const chipsEl = document.getElementById("chips");
+
+MENU.forEach((cat, index) => {
+  const chip = document.createElement("button");
+  chip.type = "button";
+  chip.className = "chip";
+  chip.textContent = cat.name;
+  chip.dataset.target = "cat-" + cat.id;
+  if (index === 0) chip.setAttribute("aria-current", "true");
+  chipsEl.appendChild(chip);
+
+  const sec = document.createElement("section");
+  sec.className = "cat-section";
+  sec.id = "cat-" + cat.id;
+
+  let html = `<h3 class="cat-title">${esc(cat.name)}</h3>`;
+  if (cat.note) html += `<p class="cat-note">${esc(cat.note)}</p>`;
+  
+  html += `<div class="cat-banner"><img src="${PHOTOS[cat.id]}" alt="${esc(cat.name)}" loading="lazy"></div>`;
+
+  if (cat.items) {
+    html += `<div class="items-grid">`;
+    cat.items.forEach(([name, price, desc]) => {
+      html += `
+        <div class="item-card">
+          <div class="item-info">
+            <span class="item-name">${esc(name)}</span>
+            ${desc ? `<span class="item-desc">${esc(desc)}</span>` : ""}
+          </div>
+          <div class="item-price">${esc(price)} <span>ج.م</span></div>
+        </div>`;
+    });
+    html += `</div>`;
+  }
+
+  if (cat.table) {
+    html += `<div class="table-container"><table class="custom-tbl"><thead><tr><th>النكهة</th>`;
+    cat.table.cols.forEach(col => { html += `<th>${esc(col)}</th>`; });
+    html += `</tr></thead><tbody>`;
+    cat.table.rows.forEach(row => {
+      html += `<tr><td>${esc(row[0])}</td>`;
+      row.slice(1).forEach(p => { html += `<td>${esc(p)}</td>`; });
+      html += `</tr>`;
+    });
+    html += `</tbody></table></div>`;
+  }
+
+  sec.innerHTML = html;
+  scroller.appendChild(sec);
+});
+
+/* ---------- Interactions ---------- */
+const overlay = document.getElementById("overlay");
+const openBtn = document.getElementById("open-menu");
+const closeBtn = document.getElementById("close-menu");
+
+if (openBtn) {
+  openBtn.addEventListener("click", function() {
+    overlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+  });
+}
+
+if (closeBtn) {
+  closeBtn.addEventListener("click", function() {
+    overlay.classList.remove("active");
+    document.body.style.overflow = "";
+  });
+}
+
+function setActiveChip(id) {
+  chipsEl.querySelectorAll(".chip").forEach(c => {
+    if (c.dataset.target === id) {
+      c.setAttribute("aria-current", "true");
+      chipsEl.scrollTo({ left: c.offsetLeft - chipsEl.clientWidth / 2 + c.clientWidth / 2, behavior: "smooth" });
+    } else {
+      c.removeAttribute("aria-current");
+    }
+  });
+}
+
+chipsEl.addEventListener("click", function(e) {
+  const chip = e.target.closest(".chip");
+  if (!chip) return;
+  const target = document.getElementById(chip.dataset.target);
+  if (target) {
+    scroller.scrollTo({ top: target.offsetTop - 10, behavior: "smooth" });
+    setActiveChip(chip.dataset.target);
+  }
+});
+
+let ticking = false;
+scroller.addEventListener("scroll", () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      const scrollY = scroller.scrollTop + 100;
+      for (const cat of MENU) {
+        const sec = document.getElementById("cat-" + cat.id);
+        if (sec && sec.offsetTop <= scrollY && (sec.offsetTop + sec.offsetHeight) > scrollY) {
+          setActiveChip("cat-" + cat.id);
+          break;
+        }
+      }
+      ticking = false;
+    });
+    ticking = true;
+  }
+}, { passive: true });
+</script>
+</body>
+</html>
