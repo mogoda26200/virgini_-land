@@ -51,10 +51,10 @@
   
   svg { display: block; pointer-events: none; }
 
-  /* Topbar (English) */
+  /* Topbar */
   .topbar {
     background: var(--red); color: var(--white);
-    display: flex; justify-content: center; align-items: center;
+    display: flex; justify-content: space-between; align-items: center;
     padding: 10px 14px; font-weight: 700; font-size: 0.9rem; text-align: center;
     border-bottom: 1px solid var(--gold);
   }
@@ -62,7 +62,22 @@
   .topbar svg { width: 16px; height: 16px; color: var(--gold-soft); flex-shrink: 0; }
   .topbar .num { font-weight: 800; letter-spacing: 0.03em; }
 
-  /* Hero (English) */
+  /* Manager Button in Header */
+  .btn-manager-trigger {
+    background: var(--gold);
+    color: var(--night);
+    border: none;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* Hero */
   .hero {
     text-align: center; padding: 28px 16px 20px;
     background: radial-gradient(circle at 50% 0%, rgba(217, 169, 63, 0.22), transparent 70%), var(--night);
@@ -81,7 +96,7 @@
 
   .wrap { width: 100%; padding: 0 16px 36px; margin: 0 auto; }
 
-  /* Menu CTA Button (English Text) */
+  /* Menu CTA Button */
   .menu-cta {
     width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px;
     margin-top: 16px; padding: 16px 20px; border: 2px solid var(--gold-soft); border-radius: 20px;
@@ -100,7 +115,7 @@
   .menu-cta .go { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--night); color: var(--gold); flex-shrink: 0; }
   .menu-cta .go svg { width: 20px; height: 20px; }
 
-  /* Links (English) */
+  /* Links */
   .links { margin-top: 24px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .link-card {
     display: flex; flex-direction: column; align-items: center; gap: 6px;
@@ -114,7 +129,7 @@
   .link-card .ic.brand svg { width: 44px; height: 44px; }
   .link-card small { font-weight: 600; color: var(--ink-soft); font-size: 0.75rem; }
 
-  /* Call Section (English) */
+  /* Call Section */
   .call {
     margin-top: 24px; padding: 24px 16px; text-align: center;
     background: var(--cream); border-radius: 20px; border: 2px solid var(--gold);
@@ -140,7 +155,7 @@
   footer { background: #130907; color: rgba(255,248,236,0.6); text-align: center; padding: 16px; font-size: 0.85rem; }
   footer strong { color: var(--gold); }
 
-  /* ---------- MENU OVERLAY (ARABIC CONTENT & RTL) ---------- */
+  /* MENU OVERLAY */
   .overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -164,8 +179,7 @@
   .close-btn {
     width: 42px; height: 42px; border-radius: 50%; border: 0;
     background: var(--gold); color: var(--night); display: grid; place-items: center; flex-shrink: 0;
-    -webkit-appearance: none;
-    outline: none;
+    -webkit-appearance: none; outline: none;
   }
   .close-btn svg { width: 22px; height: 22px; }
 
@@ -175,9 +189,7 @@
     flex: none; padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: 0.85rem;
     border: 1px solid rgba(217, 169, 63, 0.4); background: rgba(255,255,255,0.05); color: var(--gold-soft);
     white-space: nowrap; transition: all 0.15s ease;
-    -webkit-appearance: none;
-    outline: none;
-    font-family: var(--font-ar);
+    -webkit-appearance: none; outline: none; font-family: var(--font-ar);
   }
   .chip[aria-current="true"] { background: var(--gold); border-color: var(--gold); color: var(--night); font-weight: 800; }
 
@@ -204,7 +216,7 @@
   .item-card {
     display: flex; align-items: center; justify-content: space-between; gap: 10px;
     background: var(--night-card); padding: 12px 14px; border-radius: 12px;
-    border: 1px solid rgba(217, 169, 63, 0.2);
+    border: 1px solid rgba(217, 169, 63, 0.2); position: relative;
   }
   .item-info { flex: 1; }
   .item-name { font-weight: 700; font-size: 0.95rem; color: var(--cream); display: block; }
@@ -216,12 +228,51 @@
   }
   .item-price span { font-size: 0.72rem; font-weight: 700; color: var(--gold-soft); }
 
-  .table-container { width: 100%; overflow-x: auto; border-radius: 12px; border: 1px solid var(--gold); -webkit-overflow-scrolling: touch; }
-  table.custom-tbl { width: 100%; border-collapse: collapse; min-width: 300px; font-size: 0.85rem; }
-  .custom-tbl th { background: var(--gold); color: var(--night); padding: 8px 6px; font-weight: 800; text-align: center; }
-  .custom-tbl td { padding: 8px 6px; text-align: center; border-bottom: 1px solid rgba(217,169,63,0.2); color: var(--cream); background: var(--night-card); }
-  .custom-tbl td:first-child { text-align: right; font-weight: 700; color: var(--gold-soft); }
-  .custom-tbl td:not(:first-child) { font-weight: 800; color: var(--gold); }
+  /* Manager controls on items */
+  .item-actions { display: none; gap: 6px; margin-left: 8px; }
+  body.manager-mode .item-actions { display: flex; }
+  .btn-edit-item, .btn-del-item {
+    border: none; border-radius: 6px; padding: 4px 8px; font-size: 0.75rem; font-weight: 800;
+    cursor: pointer; font-family: var(--font-ar);
+  }
+  .btn-edit-item { background: #D9A93F; color: #1D0F0B; }
+  .btn-del-item { background: #B3242E; color: #FFF; }
+
+  /* Manager Panel Floating Bar */
+  .manager-bar {
+    display: none; background: #281713; border-bottom: 2px solid var(--gold);
+    padding: 10px 16px; color: var(--cream); font-family: var(--font-ar);
+    align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  }
+  body.manager-mode .manager-bar { display: flex; }
+  .manager-bar-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .mgr-btn {
+    background: var(--gold); color: var(--night); border: none; padding: 6px 12px;
+    border-radius: 8px; font-weight: 800; font-size: 0.85rem; font-family: var(--font-ar);
+  }
+  .mgr-btn-danger { background: var(--red); color: white; }
+
+  /* Modal Popup */
+  .modal {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.8); z-index: 99999999;
+    display: none; align-items: center; justify-content: center; padding: 16px;
+    font-family: var(--font-ar);
+  }
+  .modal.active { display: flex; }
+  .modal-content {
+    background: var(--night-card); border: 2px solid var(--gold);
+    border-radius: 16px; padding: 20px; width: 100%; max-width: 420px;
+    color: var(--cream); box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  }
+  .modal-content h3 { margin-top: 0; color: var(--gold); font-size: 1.3rem; }
+  .form-group { margin-bottom: 12px; text-align: right; }
+  .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px; color: var(--gold-soft); }
+  .form-group input, .form-group select {
+    width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--gold);
+    background: #150A08; color: var(--cream); font-family: var(--font-ar); font-size: 0.95rem;
+  }
+  .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }
 
   @media (min-width: 600px) {
     .wrap { max-width: 800px; }
@@ -238,16 +289,17 @@
 
 <body>
 
-<!-- Topbar (English) -->
+<!-- Topbar -->
 <div class="topbar">
-  <a href="tel:+201202144755" aria-label="Call Virginia Land">
+  <a href="tel:+201155585666" aria-label="Call Virginia Land">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
-    Call Us: <span class="num">01202144755</span>
+    Call Us: <span class="num">01155585666</span>
   </a>
+  <button class="btn-manager-trigger" id="btn-login-modal">Manager ⚙️</button>
 </div>
 
 <main>
-  <!-- Hero Section (English) -->
+  <!-- Hero Section -->
   <header class="hero">
     <div class="logo" id="logo"></div>
     <h1>VIRGINIA LAND</h1>
@@ -255,7 +307,7 @@
   </header>
 
   <div class="wrap">
-    <!-- Menu Button (English) -->
+    <!-- Menu Button -->
     <button class="menu-cta" type="button" id="open-menu">
       <span>
         <span class="word">Menu</span>
@@ -266,7 +318,7 @@
       </span>
     </button>
 
-    <!-- Navigation / Social Links (English) -->
+    <!-- Social Links -->
     <nav class="links">
       <a class="link-card" href="https://www.facebook.com/share/1DSd3F1Dy8/?mibextid=wwXIfr" target="_blank" rel="noopener">
         <span class="ic brand"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11.5" fill="#fff"/><path fill="#0866FF" d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></span>
@@ -283,24 +335,24 @@
         Location
         <small>Google Maps</small>
       </a>
-      <a class="link-card" href="tel:+201202144755">
+      <a class="link-card" href="tel:+201155585666">
         <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
         Call
-        <small>01202144755</small>
+        <small>01155585666</small>
       </a>
     </nav>
 
-    <!-- Orders & Reservations (English) -->
+    <!-- Call Section -->
     <section class="call">
       <h2>Orders & Reservations</h2>
       <p>Direct connection with our team</p>
-      <a class="big-num" href="tel:+201202144755">01202144755</a>
+      <a class="big-num" href="tel:+201155585666">01155585666</a>
       <div class="call-actions">
-        <a class="btn btn-red" href="tel:+201202144755">
+        <a class="btn btn-red" href="tel:+201155585666">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
           Call Now
         </a>
-        <a class="btn btn-white" href="https://wa.me/201202144755" target="_blank" rel="noopener">
+        <a class="btn btn-white" href="https://wa.me/201155585666" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
           WhatsApp
         </a>
@@ -313,8 +365,20 @@
   <strong>Virginia Land</strong> &middot; Restaurant & Cafe
 </footer>
 
-<!-- Menu Overlay (Remains Arabic & RTL) -->
+<!-- Menu Overlay -->
 <div class="overlay" id="overlay" dir="rtl">
+  
+  <!-- Manager Bar -->
+  <div class="manager-bar">
+    <span>وضع المدير (Manager Active)</span>
+    <div class="manager-bar-btns">
+      <button class="mgr-btn" id="btn-add-item-modal">+ إضافة منتج</button>
+      <button class="mgr-btn" id="btn-add-cat-modal">+ إضافة قسم</button>
+      <button class="mgr-btn mgr-btn-danger" id="btn-reset-menu">إعادة ضبط</button>
+      <button class="mgr-btn mgr-btn-danger" id="btn-logout">خروج</button>
+    </div>
+  </div>
+
   <div class="menu-header">
     <div class="menu-header-row">
       <div>
@@ -329,6 +393,66 @@
   </div>
 
   <div class="menu-body" id="scroller"></div>
+</div>
+
+<!-- Modal: Login -->
+<div class="modal" id="modal-login" dir="rtl">
+  <div class="modal-content">
+    <h3>تسجيل دخول المدير (Manager)</h3>
+    <div class="form-group">
+      <label for="pwd-input">كلمة المرور (Password):</label>
+      <input type="password" id="pwd-input" placeholder="أدخل الرقم السري">
+    </div>
+    <div class="modal-actions">
+      <button class="mgr-btn" id="btn-do-login">دخول</button>
+      <button class="mgr-btn mgr-btn-danger" onclick="closeModals()">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Add / Edit Item -->
+<div class="modal" id="modal-item" dir="rtl">
+  <div class="modal-content">
+    <h3 id="modal-item-title">إضافة / تعديل منتج</h3>
+    <input type="hidden" id="item-cat-id">
+    <input type="hidden" id="item-index">
+    
+    <div class="form-group">
+      <label for="item-cat-select">اختر القسم:</label>
+      <select id="item-cat-select"></select>
+    </div>
+    <div class="form-group">
+      <label for="item-name-input">اسم المنتج:</label>
+      <input type="text" id="item-name-input" placeholder="مثال: آيس لاتيه">
+    </div>
+    <div class="form-group">
+      <label for="item-price-input">السعر (ج.م):</label>
+      <input type="number" id="item-price-input" placeholder="مثال: 65">
+    </div>
+    <div class="form-group">
+      <label for="item-desc-input">وصف اختياري (النكهات / التفاصيل):</label>
+      <input type="text" id="item-desc-input" placeholder="مثال: كراميل - فانيليا">
+    </div>
+    <div class="modal-actions">
+      <button class="mgr-btn" id="btn-save-item">حفظ</button>
+      <button class="mgr-btn mgr-btn-danger" onclick="closeModals()">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Add Category -->
+<div class="modal" id="modal-cat" dir="rtl">
+  <div class="modal-content">
+    <h3>إضافة قسم جديد</h3>
+    <div class="form-group">
+      <label for="cat-name-input">اسم القسم الجديد:</label>
+      <input type="text" id="cat-name-input" placeholder="مثال: ركن العروض">
+    </div>
+    <div class="modal-actions">
+      <button class="mgr-btn" id="btn-save-cat">إضافة القسم</button>
+      <button class="mgr-btn mgr-btn-danger" onclick="closeModals()">إلغاء</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -355,7 +479,7 @@ const PHOTOS = {
   pancake: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=800&q=80"
 };
 
-const MENU = [
+const INITIAL_MENU = [
   { id: "hot", name: "ركن المشروبات الساخنة", items: [
     ["شاي", 20], ["شاي أخضر", 25], ["شاي فليفر", 30], ["شاي حليب", 45],
     ["أعشاب", 30], ["قرفة سادة", 30], ["قرفة حليب", 50],
@@ -488,6 +612,24 @@ const MENU = [
   }}
 ];
 
+let currentMenu = [];
+
+function loadMenuData() {
+  const localData = localStorage.getItem("v_land_menu");
+  if (localData) {
+    try {
+      currentMenu = JSON.parse(localData);
+    } catch(e) { currentMenu = INITIAL_MENU; }
+  } else {
+    currentMenu = INITIAL_MENU;
+  }
+}
+
+function saveMenuData() {
+  localStorage.setItem("v_land_menu", JSON.stringify(currentMenu));
+  renderMenu();
+}
+
 function renderLogo() {
   const leaves = [];
   const cx = 50, cy = 50, r = 37, n = 8;
@@ -511,56 +653,72 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;",
 const scroller = document.getElementById("scroller");
 const chipsEl = document.getElementById("chips");
 
-MENU.forEach((cat, index) => {
-  const chip = document.createElement("button");
-  chip.type = "button";
-  chip.className = "chip";
-  chip.textContent = cat.name;
-  chip.dataset.target = "cat-" + cat.id;
-  if (index === 0) chip.setAttribute("aria-current", "true");
-  chipsEl.appendChild(chip);
+function renderMenu() {
+  scroller.innerHTML = "";
+  chipsEl.innerHTML = "";
 
-  const sec = document.createElement("section");
-  sec.className = "cat-section";
-  sec.id = "cat-" + cat.id;
+  currentMenu.forEach((cat, index) => {
+    // Render Chip
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "chip";
+    chip.textContent = cat.name;
+    chip.dataset.target = "cat-" + cat.id;
+    if (index === 0) chip.setAttribute("aria-current", "true");
+    chipsEl.appendChild(chip);
 
-  let html = `<h3 class="cat-title">${esc(cat.name)}</h3>`;
-  if (cat.note) html += `<p class="cat-note">${esc(cat.note)}</p>`;
-  
-  html += `<div class="cat-banner"><img src="${PHOTOS[cat.id]}" alt="${esc(cat.name)}" loading="lazy"></div>`;
+    // Render Section
+    const sec = document.createElement("section");
+    sec.className = "cat-section";
+    sec.id = "cat-" + cat.id;
 
-  if (cat.items) {
-    html += `<div class="items-grid">`;
-    cat.items.forEach(([name, price, desc]) => {
-      html += `
-        <div class="item-card">
-          <div class="item-info">
-            <span class="item-name">${esc(name)}</span>
-            ${desc ? `<span class="item-desc">${esc(desc)}</span>` : ""}
-          </div>
-          <div class="item-price">${esc(price)} <span>ج.م</span></div>
-        </div>`;
-    });
-    html += `</div>`;
-  }
+    let html = `<h3 class="cat-title">${esc(cat.name)}</h3>`;
+    if (cat.note) html += `<p class="cat-note">${esc(cat.note)}</p>`;
+    
+    const bannerImg = PHOTOS[cat.id] || PHOTOS['hot'];
+    html += `<div class="cat-banner"><img src="${bannerImg}" alt="${esc(cat.name)}" loading="lazy"></div>`;
 
-  if (cat.table) {
-    html += `<div class="table-container"><table class="custom-tbl"><thead><tr><th>النكهة</th>`;
-    cat.table.cols.forEach(col => { html += `<th>${esc(col)}</th>`; });
-    html += `</tr></thead><tbody>`;
-    cat.table.rows.forEach(row => {
-      html += `<tr><td>${esc(row[0])}</td>`;
-      row.slice(1).forEach(p => { html += `<td>${esc(p)}</td>`; });
-      html += `</tr>`;
-    });
-    html += `</tbody></table></div>`;
-  }
+    if (cat.items) {
+      html += `<div class="items-grid">`;
+      cat.items.forEach(([name, price, desc], itemIdx) => {
+        html += `
+          <div class="item-card">
+            <div class="item-info">
+              <span class="item-name">${esc(name)}</span>
+              ${desc ? `<span class="item-desc">${esc(desc)}</span>` : ""}
+            </div>
+            <div class="item-price">${esc(price)} <span>ج.م</span></div>
+            <div class="item-actions">
+              <button class="btn-edit-item" onclick="openEditItemModal('${cat.id}', ${itemIdx})">تعديل</button>
+              <button class="btn-del-item" onclick="deleteItem('${cat.id}', ${itemIdx})">حذف</button>
+            </div>
+          </div>`;
+      });
+      html += `</div>`;
+    }
 
-  sec.innerHTML = html;
-  scroller.appendChild(sec);
-});
+    if (cat.table) {
+      html += `<div class="table-container"><table class="custom-tbl"><thead><tr><th>النكهة</th>`;
+      cat.table.cols.forEach(col => { html += `<th>${esc(col)}</th>`; });
+      html += `</tr></thead><tbody>`;
+      cat.table.rows.forEach(row => {
+        html += `<tr><td>${esc(row[0])}</td>`;
+        row.slice(1).forEach(p => { html += `<td>${esc(p)}</td>`; });
+        html += `</tr>`;
+      });
+      html += `</tbody></table></div>`;
+    }
 
-/* ---------- Interactions ---------- */
+    sec.innerHTML = html;
+    scroller.appendChild(sec);
+  });
+}
+
+// Initial Load
+loadMenuData();
+renderMenu();
+
+/* Interactions */
 const overlay = document.getElementById("overlay");
 const openBtn = document.getElementById("open-menu");
 const closeBtn = document.getElementById("close-menu");
@@ -600,23 +758,150 @@ chipsEl.addEventListener("click", function(e) {
   }
 });
 
-let ticking = false;
-scroller.addEventListener("scroll", () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      const scrollY = scroller.scrollTop + 100;
-      for (const cat of MENU) {
-        const sec = document.getElementById("cat-" + cat.id);
-        if (sec && sec.offsetTop <= scrollY && (sec.offsetTop + sec.offsetHeight) > scrollY) {
-          setActiveChip("cat-" + cat.id);
-          break;
-        }
-      }
-      ticking = false;
-    });
-    ticking = true;
+/* Manager Logic */
+function closeModals() {
+  document.querySelectorAll(".modal").forEach(m => m.classList.remove("active"));
+}
+
+document.getElementById("btn-login-modal").addEventListener("click", () => {
+  if (document.body.classList.contains("manager-mode")) {
+    overlay.classList.add("active");
+  } else {
+    document.getElementById("modal-login").classList.add("active");
+    document.getElementById("pwd-input").value = "";
   }
-}, { passive: true });
+});
+
+document.getElementById("btn-do-login").addEventListener("click", () => {
+  const pwd = document.getElementById("pwd-input").value;
+  if (pwd === "0000") {
+    document.body.classList.add("manager-mode");
+    closeModals();
+    overlay.classList.add("active");
+    alert("تم تسجيل الدخول بنجاح كمدير! يمكنك الآن إضافة وتعديل وحذف أي عنصر.");
+  } else {
+    alert("كلمة المرور غير صحيحة!");
+  }
+});
+
+document.getElementById("btn-logout").addEventListener("click", () => {
+  document.body.classList.remove("manager-mode");
+  alert("تم الخروج من وضع المدير.");
+});
+
+function populateCategorySelect(selectedId = null) {
+  const select = document.getElementById("item-cat-select");
+  select.innerHTML = "";
+  currentMenu.forEach(cat => {
+    const opt = document.createElement("option");
+    opt.value = cat.id;
+    opt.textContent = cat.name;
+    if (selectedId && cat.id === selectedId) opt.selected = true;
+    select.appendChild(opt);
+  });
+}
+
+document.getElementById("btn-add-item-modal").addEventListener("click", () => {
+  document.getElementById("modal-item-title").textContent = "إضافة منتج جديد";
+  populateCategorySelect();
+  document.getElementById("item-cat-id").value = "";
+  document.getElementById("item-index").value = "-1";
+  document.getElementById("item-name-input").value = "";
+  document.getElementById("item-price-input").value = "";
+  document.getElementById("item-desc-input").value = "";
+  document.getElementById("modal-item").classList.add("active");
+});
+
+function openEditItemModal(catId, itemIdx) {
+  const cat = currentMenu.find(c => c.id === catId);
+  if (!cat || !cat.items[itemIdx]) return;
+  const item = cat.items[itemIdx];
+
+  document.getElementById("modal-item-title").textContent = "تعديل المنتج";
+  populateCategorySelect(catId);
+  document.getElementById("item-cat-id").value = catId;
+  document.getElementById("item-index").value = itemIdx;
+  document.getElementById("item-name-input").value = item[0];
+  document.getElementById("item-price-input").value = item[1];
+  document.getElementById("item-desc-input").value = item[2] || "";
+  document.getElementById("modal-item").classList.add("active");
+}
+
+function deleteItem(catId, itemIdx) {
+  if (confirm("هل أنت تأكد من حذف هذا المنتج؟")) {
+    const cat = currentMenu.find(c => c.id === catId);
+    if (cat) {
+      cat.items.splice(itemIdx, 1);
+      saveMenuData();
+    }
+  }
+}
+
+document.getElementById("btn-save-item").addEventListener("click", () => {
+  const catIdSelect = document.getElementById("item-cat-select").value;
+  const itemIdx = parseInt(document.getElementById("item-index").value);
+  const name = document.getElementById("item-name-input").value.trim();
+  const price = parseFloat(document.getElementById("item-price-input").value);
+  const desc = document.getElementById("item-desc-input").value.trim();
+
+  if (!name || isNaN(price)) {
+    alert("يرجى كتابة اسم المنتج والسعر بوضوح.");
+    return;
+  }
+
+  const targetCat = currentMenu.find(c => c.id === catIdSelect);
+  if (!targetCat) return;
+
+  if (!targetCat.items) targetCat.items = [];
+
+  const oldCatId = document.getElementById("item-cat-id").value;
+
+  if (itemIdx >= 0 && oldCatId === catIdSelect) {
+    // تعديل في نفس القسم
+    targetCat.items[itemIdx] = desc ? [name, price, desc] : [name, price];
+  } else {
+    // إذا تغير القسم أثناء التعديل
+    if (itemIdx >= 0 && oldCatId) {
+      const oldCat = currentMenu.find(c => c.id === oldCatId);
+      if (oldCat) oldCat.items.splice(itemIdx, 1);
+    }
+    // إضافة منتج جديد أو نقله لقسم جديد
+    targetCat.items.push(desc ? [name, price, desc] : [name, price]);
+  }
+
+  saveMenuData();
+  closeModals();
+});
+
+document.getElementById("btn-add-cat-modal").addEventListener("click", () => {
+  document.getElementById("cat-name-input").value = "";
+  document.getElementById("modal-cat").classList.add("active");
+});
+
+document.getElementById("btn-save-cat").addEventListener("click", () => {
+  const catName = document.getElementById("cat-name-input").value.trim();
+  if (!catName) {
+    alert("يرجى كتابة اسم القسم.");
+    return;
+  }
+  const newId = "cat_" + Date.now();
+  currentMenu.push({
+    id: newId,
+    name: catName,
+    items: []
+  });
+  saveMenuData();
+  closeModals();
+});
+
+document.getElementById("btn-reset-menu").addEventListener("click", () => {
+  if (confirm("هل تريد إعادة المنيو للوضع الأصلي الحقيقي وإلغاء التعديلات؟")) {
+    localStorage.removeItem("v_land_menu");
+    currentMenu = INITIAL_MENU;
+    renderMenu();
+    alert("تمت إعادة الضبط للوضع الأصلي.");
+  }
+});
 </script>
 </body>
 </html>
